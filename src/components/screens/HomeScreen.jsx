@@ -344,94 +344,126 @@ export default function HomeScreen() {
         </button>
       </div>
 
-      {/* 4. Two-Column Stats Row: System Health & Energy Usage */}
-      <div className="grid grid-cols-2 gap-2.5">
-        {/* Left: System Health Card */}
-        <div
-          onClick={() => setCurrentScreen('system')}
-          className="p-3.5 rounded-3xl neu-flat cursor-pointer hover:border-deepViolet/40 transition-all flex flex-col justify-between"
-        >
-          <div className="flex items-center justify-between mb-1">
-            <div className="flex items-center gap-1.5">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span className="text-xs font-bold text-slate-800">System Health</span>
+      {/* 4. System Health Card */}
+      <div
+        onClick={() => setCurrentScreen('system')}
+        className="p-3.5 sm:p-4 rounded-3xl neu-flat cursor-pointer hover:border-deepViolet/40 hover:shadow-sm active:scale-99 transition-all flex items-center justify-between group"
+      >
+        <div className="space-y-1">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center shrink-0">
+              <ShieldCheck className="w-4 h-4" />
             </div>
-            <span className="px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[9px] font-bold">
-              Healthy
-            </span>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-deepViolet transition-colors">
+                System Health
+              </h3>
+              <p className="text-[10.5px] text-slate-500">
+                4 Modular Cassettes Synchronized
+              </p>
+            </div>
           </div>
-
-          {/* Semicircular Gauge (180 deg) */}
-          <div className="relative w-full h-16 flex items-center justify-center my-1">
-            <svg className="w-28 h-16" viewBox="0 0 100 55">
-              <path
-                d="M 12,50 A 38,38 0 0,1 88,50"
-                fill="none"
-                stroke="#E2E8F0"
-                strokeWidth="7"
-                strokeLinecap="round"
-              />
-              <path
-                d="M 12,50 A 38,38 0 0,1 88,50"
-                fill="none"
-                stroke="#10B981"
-                strokeWidth="7"
-                strokeDasharray={`${Math.PI * 38}`}
-                strokeDashoffset={`${Math.PI * 38 * (1 - (systemHealth / 100))}`}
-                strokeLinecap="round"
-              />
-            </svg>
-            <div className="absolute inset-0 top-3 flex flex-col items-center justify-center text-center">
-              <span className="text-base font-black text-slate-800 font-mono leading-none">
-                {systemHealth}%
-              </span>
-              <span className="text-[8.5px] font-semibold text-slate-400 mt-0.5">
-                Overall Status
-              </span>
-            </div>
+          <div className="flex items-center gap-1.5 pt-1">
+            <span className="px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[10px] font-bold flex items-center gap-1">
+              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+              Optimal Condition
+            </span>
+            <span className="text-[10px] text-slate-400">• Healthy</span>
           </div>
         </div>
 
-        {/* Right: Energy Usage Card */}
-        <div
-          onClick={() => setCurrentScreen('energy')}
-          className="p-3.5 rounded-3xl neu-flat cursor-pointer hover:border-deepViolet/40 transition-all flex flex-col justify-between"
-        >
-          <div className="flex items-center justify-between mb-1">
-            <div className="flex items-center gap-1.5">
-              <Zap className="w-4 h-4 text-sky-500 fill-sky-400/20" />
-              <span className="text-xs font-bold text-slate-800">Energy Usage</span>
-            </div>
-            <span className="px-1.5 py-0.5 rounded-full bg-polar-300 text-deepViolet text-[9px] font-bold">
-              Today ▾
+        {/* Semicircular Gauge (180 deg) on right with generous padding from the border */}
+        <div className="relative w-28 h-17 flex items-center justify-center shrink-0">
+          <svg className="w-full h-full" viewBox="0 0 104 60">
+            <defs>
+              <linearGradient id="systemHealthGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+                <stop offset="0%" stopColor="#34D399" />
+                <stop offset="100%" stopColor="#10B981" />
+              </linearGradient>
+            </defs>
+
+            {/* Background 180° Track */}
+            <path
+              d="M 8,54 A 44,44 0 0,1 96,54"
+              fill="none"
+              stroke="#E2E8F0"
+              strokeWidth="6.5"
+              strokeLinecap="round"
+            />
+
+            {/* Active Health Progress Arc */}
+            <path
+              d="M 8,54 A 44,44 0 0,1 96,54"
+              fill="none"
+              stroke="url(#systemHealthGrad)"
+              strokeWidth="6.5"
+              strokeDasharray={`${Math.PI * 44}`}
+              strokeDashoffset={`${Math.PI * 44 * (1 - (systemHealth / 100))}`}
+              strokeLinecap="round"
+              className="transition-all duration-300"
+            />
+          </svg>
+
+          {/* Value readout with generous top padding from the green arc border */}
+          <div className="absolute inset-0 flex flex-col items-center justify-end pb-1 text-center pointer-events-none">
+            <span className="text-lg font-black text-slate-800 font-mono tracking-tight leading-none">
+              {systemHealth}<span className="text-xs font-bold text-slate-500 font-sans">%</span>
             </span>
-          </div>
-
-          {/* Value + Mini Chart */}
-          <div className="flex items-end justify-between mt-1">
-            <div>
-              <div className="text-xl font-black text-slate-800 font-mono leading-tight">
-                4.8 <span className="text-[11px] font-bold text-slate-400 font-sans">kWh</span>
-              </div>
-              <div className="flex items-center gap-0.5 text-[9.5px] font-bold text-emerald-600 mt-0.5">
-                <TrendingDown className="w-3 h-3 stroke-[2.5]" />
-                <span>12% vs yesterday</span>
-              </div>
-            </div>
-
-            {/* Mini Gradient Bar Chart */}
-            <div className="flex items-end gap-1 h-11 pb-0.5">
-              <div className="w-1.5 h-4 bg-sky-300/60 rounded-t-sm" />
-              <div className="w-1.5 h-6 bg-sky-400/70 rounded-t-sm" />
-              <div className="w-1.5 h-5 bg-sky-400/80 rounded-t-sm" />
-              <div className="w-1.5 h-8 bg-sky-500 rounded-t-sm" />
-              <div className="w-1.5 h-10 bg-deepViolet rounded-t-sm" />
-            </div>
+            <span className="text-[9px] font-extrabold text-slate-400 uppercase tracking-wider mt-1 leading-none">
+              Status
+            </span>
           </div>
         </div>
       </div>
 
-      {/* 5. Component Status Card - Full Width */}
+      {/* 5. Energy Usage Card (Placed below System Health) */}
+      <div
+        onClick={() => setCurrentScreen('energy')}
+        className="p-3.5 sm:p-4 rounded-3xl neu-flat cursor-pointer hover:border-deepViolet/40 hover:shadow-sm active:scale-99 transition-all flex flex-col justify-between group"
+      >
+        <div className="flex items-center justify-between mb-2">
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-xl bg-sky-50 text-sky-500 flex items-center justify-center shrink-0">
+              <Zap className="w-4 h-4 fill-sky-400/20" />
+            </div>
+            <div>
+              <h3 className="text-xs font-bold text-slate-800 group-hover:text-deepViolet transition-colors">
+                Energy Usage
+              </h3>
+              <p className="text-[10.5px] text-slate-500">
+                Live Power & Daily Telemetry
+              </p>
+            </div>
+          </div>
+          <span className="px-2 py-0.5 rounded-full bg-polar-300 text-deepViolet text-[9.5px] font-bold">
+            Today ▾
+          </span>
+        </div>
+
+        {/* Value + Mini Chart */}
+        <div className="flex items-end justify-between pt-1">
+          <div>
+            <div className="text-2xl font-black text-slate-800 font-mono leading-tight">
+              4.8 <span className="text-xs font-bold text-slate-400 font-sans">kWh</span>
+            </div>
+            <div className="flex items-center gap-1 text-[10px] font-bold text-emerald-600 mt-0.5">
+              <TrendingDown className="w-3.5 h-3.5 stroke-[2.5]" />
+              <span>12% vs yesterday</span>
+            </div>
+          </div>
+
+          {/* Mini Gradient Bar Chart */}
+          <div className="flex items-end gap-1.5 h-11 pb-0.5">
+            <div className="w-2 h-4 bg-sky-300/60 rounded-t-sm" />
+            <div className="w-2 h-6 bg-sky-400/70 rounded-t-sm" />
+            <div className="w-2 h-5 bg-sky-400/80 rounded-t-sm" />
+            <div className="w-2 h-8 bg-sky-500 rounded-t-sm" />
+            <div className="w-2 h-11 bg-deepViolet rounded-t-sm shadow-xs" />
+          </div>
+        </div>
+      </div>
+
+      {/* 6. Component Status Card - Full Width */}
       <div className="p-3.5 rounded-3xl neu-flat flex flex-col justify-between">
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-1.5">
@@ -479,7 +511,7 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* 6. Maintenance & Filter Care Section - Moved Down Below */}
+      {/* 7. Maintenance & Filter Care Section */}
       <div className="space-y-2">
         {/* Card 1: Maintenance Notice */}
         <div
