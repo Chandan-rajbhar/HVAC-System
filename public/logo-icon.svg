@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" fill="none">
+  <circle cx="50" cy="50" r="46" stroke="#241A6E" stroke-width="2.5" fill="#F1F3F4"/>
+  <circle cx="50" cy="50" r="43" stroke="#241A6E" stroke-width="0.75" stroke-dasharray="1 1"/>
+  <text font-family="'Space Grotesk', sans-serif" font-weight="700" font-size="28" fill="#C84B31" x="50" y="58" text-anchor="middle" letter-spacing="-1">NT</text>
+  <path id="textPathTop" d="M 18,50 A 32,32 0 1,1 82,50" fill="none"/>
+  <text font-size="5.2" font-family="'Plus Jakarta Sans', sans-serif" font-weight="700" fill="#241A6E" letter-spacing="1.8">
+    <textPath href="#textPathTop" startOffset="50%" text-anchor="middle">ENGINEERED FOR SIMPLICITY</textPath>
+  </text>
+  <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="800" font-size="5.8" fill="#241A6E" x="50" y="73" text-anchor="middle" letter-spacing="1.2">NO-TECH</text>
+  <text font-family="'Plus Jakarta Sans', sans-serif" font-weight="600" font-size="4" fill="#64748B" x="50" y="80" text-anchor="middle" letter-spacing="1.5">HVAC SYSTEMS</text>
+</svg>
