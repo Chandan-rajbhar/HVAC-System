@@ -31,12 +31,17 @@ export default function CompartmentDetailModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-3.5 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-3.5 bg-slate-900/50 backdrop-blur-xs animate-backdrop-in">
       <div 
-        className="w-full max-w-[350px] max-h-[82%] bg-polar-100 rounded-3xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+        className="w-full max-w-[420px] max-h-[88%] bg-polar-100 rounded-t-[32px] sm:rounded-3xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-mobile-sheet-enter"
       >
+        {/* Mobile Drag Indicator Handle */}
+        <div className="w-full pt-2.5 pb-1 flex justify-center bg-polar-200">
+          <div className="w-12 h-1 rounded-full bg-slate-300/90" />
+        </div>
+
         {/* Header */}
-        <div className="p-4 px-5 bg-polar-200 border-b border-polar-300 flex items-center justify-between">
+        <div className="p-3.5 px-5 bg-polar-200 border-b border-polar-300 flex items-center justify-between">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 shadow-[0_0_8px_#10B981]" />
             <div>
