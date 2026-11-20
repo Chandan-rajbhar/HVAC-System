@@ -24,7 +24,7 @@ export default function PhoneFrame({ children, header, bottomNav, modals }) {
         {/* Pinned firmly at the top with shrink-0 and z-40.               */}
         {/* Completely stationary: NEVER moves or scrolls away.            */}
         {/* ============================================================== */}
-        <header className="shrink-0 z-40 w-full bg-polar-200 border-b border-polar-300/70 select-none shadow-xs">
+        <header className="shrink-0 z-40 w-full select-none">
           {header}
         </header>
 
@@ -39,18 +39,13 @@ export default function PhoneFrame({ children, header, bottomNav, modals }) {
         </main>
 
         {/* ============================================================== */}
-        {/* 3. FIXED BOTTOM FOOTER BAR (BottomNav + Home Indicator)        */}
+        {/* 3. FIXED BOTTOM FOOTER BAR (Floating BottomNav)                */}
         {/* Pinned firmly at the bottom with shrink-0 and z-40.            */}
         {/* Completely stationary: NEVER moves or scrolls away.            */}
         {/* ============================================================== */}
-        <footer className="shrink-0 z-40 w-full glass-nav border-t border-polar-300 select-none">
+        <footer className="shrink-0 z-40 w-full bg-polar-200 select-none">
           {/* Tab Navigation */}
           {bottomNav}
-
-          {/* Home Indicator Bar */}
-          <div className="w-full pb-1.5 pt-0.5 flex justify-center items-center">
-            <div className="w-32 h-1 rounded-full bg-slate-400/80 hover:bg-slate-600 transition-colors cursor-pointer" />
-          </div>
         </footer>
 
         {/* Floating Modals overlay inside phone viewport */}

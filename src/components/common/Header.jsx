@@ -23,25 +23,43 @@ export default function Header() {
     }
   };
 
+  const handleBrandClick = () => {
+    if (currentScreen !== 'home') {
+      setCurrentScreen('home');
+    }
+  };
+
   return (
-    <div className="w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between">
-      {/* Brand Identity (Always visible and uniform across all pages) */}
-      <LogoNT size="sm" variant="full" />
+    <div className="relative w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between bg-gradient-to-r from-[#1B1454] via-[#281D7A] to-[#382898] text-white shadow-[0_4px_16px_rgba(36,26,110,0.25)] border-b border-indigo-950/40 select-none">
+      {/* Subtle top specular sheen & bottom hairline accent */}
+      <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
+      <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
+
+      {/* Brand Identity: Authentic NT Logo & LOCAL INDUSTRIES */}
+      <button
+        type="button"
+        onClick={handleBrandClick}
+        className="relative z-10 flex items-center text-left group cursor-pointer active:scale-[0.98] transition-transform focus:outline-none"
+        title={currentScreen !== 'home' ? 'Return to Home' : 'NO-TECH Home'}
+      >
+        <LogoNT size="sm" variant="full" title="LOCAL INDUSTRIES" />
+      </button>
 
       {/* Header Actions: Notification Bell */}
-      <div className="flex items-center gap-1.5">
+      <div className="relative z-10 flex items-center">
         <button
           onClick={handleNotificationClick}
-          className={`relative p-2 rounded-xl neu-button transition-all ${isNotificationPage
-            ? 'bg-deepViolet/10 text-deepViolet shadow-inner ring-1 ring-deepViolet/20'
-            : 'text-slate-700 hover:text-deepViolet active:scale-95'
-            }`}
+          className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center transition-all ${
+            isNotificationPage
+              ? 'bg-white/25 border border-white/40 text-white ring-2 ring-white/30 shadow-inner backdrop-blur-md'
+              : 'bg-white/15 hover:bg-white/25 active:bg-white/30 border border-white/20 text-white shadow-xs backdrop-blur-md'
+          }`}
           title={isNotificationPage ? 'Close Notifications' : 'Notifications & Alerts'}
           aria-label={isNotificationPage ? 'Close Notifications' : 'Notifications'}
         >
-          <Bell className={`w-4 h-4 ${isNotificationPage ? 'text-deepViolet fill-deepViolet/20' : 'text-deepViolet'}`} />
+          <Bell className="w-[18px] h-[18px] text-white" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1 -right-1 min-w-[17px] h-[17px] px-1 rounded-full bg-status-attention text-white text-[9.5px] font-bold flex items-center justify-center shadow-xs">
+            <span className="absolute -top-1.5 -right-1.5 min-w-[19px] h-[19px] px-1 rounded-full bg-gradient-to-tr from-rose-600 via-red-500 to-rose-500 text-white text-[9.5px] font-black tracking-tight flex items-center justify-center shadow-[0_2px_8px_rgba(244,63,94,0.5)] ring-2 ring-[#281D7A] select-none pointer-events-none">
               {unreadCount}
             </span>
           )}

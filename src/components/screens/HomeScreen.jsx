@@ -267,8 +267,8 @@ export default function HomeScreen() {
               </div>
             </div>
 
-            {/* Ergonomic Floating Stepper Buttons - Enlarged */}
-            <div className="flex items-center justify-center gap-3.5 mt-1.5 z-10">
+            {/* Ergonomic Floating Stepper Buttons - Enlarged with comfortable spacing */}
+            <div className="flex items-center justify-center gap-8 sm:gap-9 mt-1.5 z-10">
               <button
                 onClick={() => adjustTargetTemp(-1)}
                 disabled={!power}

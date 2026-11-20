@@ -14,40 +14,52 @@ export default function BottomNav() {
   ];
 
   return (
-    <nav className="w-full px-2 sm:px-3 py-1.5" aria-label="Bottom Navigation">
-      <div className="flex items-center justify-around">
-        {navItems.map((item) => {
-          const Icon = item.icon;
-          const isActive = currentScreen === item.id;
+    <div className="w-full px-3 sm:px-4 pb-2.5 sm:pb-3.5 pt-0.5">
+      <nav
+        className="w-full bg-white rounded-[28px] sm:rounded-[32px] shadow-[0_4px_25px_rgba(0,0,0,0.06),0_1px_4px_rgba(0,0,0,0.03)] border border-slate-100/90 px-1.5 sm:px-2 py-2 select-none"
+        aria-label="Bottom Navigation"
+      >
+        <div className="flex items-center justify-between">
+          {navItems.map((item) => {
+            const Icon = item.icon;
+            const isActive = currentScreen === item.id;
 
-          return (
-            <button
-              key={item.id}
-              onClick={() => setCurrentScreen(item.id)}
-              className={`relative flex flex-col items-center justify-center py-1 sm:py-1.5 px-2 sm:px-3 rounded-2xl transition-all duration-200 ${
-                isActive 
-                  ? 'text-deepViolet font-bold' 
-                  : 'text-slate-400 hover:text-slate-600 font-medium'
-              }`}
-            >
-              {/* Active Background Pill with subtle neumorphic glow */}
-              {isActive && (
-                <span className="absolute inset-0 rounded-2xl bg-deepViolet/10 -z-10 animate-in fade-in zoom-in-95 duration-200" />
-              )}
+            return (
+              <button
+                key={item.id}
+                onClick={() => setCurrentScreen(item.id)}
+                className="relative flex flex-col items-center justify-center flex-1 py-0.5 group focus:outline-none cursor-pointer"
+              >
+                {/* Icon Container with Active Pill Highlight */}
+                <div
+                  className={`relative flex items-center justify-center w-12 sm:w-14 h-7 sm:h-7.5 rounded-full transition-all duration-200 ${isActive
+                    ? 'bg-[#EEF2FD] text-[#3F3AC7]'
+                    : 'text-slate-400 group-hover:text-slate-600'
+                    }`}
+                >
+                  <Icon
+                    className={`w-[18px] h-[18px] sm:w-[19px] sm:h-[19px] transition-all duration-200 ${
+                      isActive
+                        ? 'stroke-[2.2]'
+                        : 'stroke-[1.8]'
+                    }`}
+                  />
+                </div>
 
-              <div className="relative">
-                <Icon className={`w-5 h-5 transition-transform duration-200 ${isActive ? 'scale-110 stroke-[2.4]' : 'stroke-[1.8]'}`} />
-              </div>
-
-              <span className={`text-[10px] sm:text-[11px] tracking-tight mt-1 transition-all ${
-                isActive ? 'text-deepViolet font-bold scale-100' : 'text-slate-500 font-medium'
-              }`}>
-                {item.label}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </nav>
+                {/* Label */}
+                <span
+                  className={`text-[10px] sm:text-[10.5px] tracking-tight mt-0.5 transition-colors duration-200 ${isActive
+                    ? 'text-[#3F3AC7] font-bold'
+                    : 'text-slate-400 group-hover:text-slate-600 font-medium'
+                    }`}
+                >
+                  {item.label}
+                </span>
+              </button>
+            );
+          })}
+        </div>
+      </nav>
+    </div>
   );
 }
