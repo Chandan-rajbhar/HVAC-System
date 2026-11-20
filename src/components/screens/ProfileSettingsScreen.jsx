@@ -797,8 +797,8 @@ export default function ProfileSettingsScreen() {
       {/* 7. LOG OUT CONFIRMATION (Smooth Mobile Bottom Sheet)           */}
       {/* ============================================================== */}
       {activeSection === 'logout' && (
-        <div className={`fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-end justify-center ${isClosing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}>
-          <div className={`w-full max-w-[420px] bg-white rounded-t-[32px] p-6 shadow-2xl border-t border-slate-100 flex flex-col text-center pb-8 ${isClosing ? 'animate-mobile-sheet-exit' : 'animate-mobile-sheet-enter'}`}>
+        <div className={`absolute inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-end justify-center ${isClosing ? 'animate-backdrop-out' : 'animate-backdrop-in'}`}>
+          <div className={`w-full bg-white rounded-t-[32px] p-5 shadow-2xl border-t border-slate-100 flex flex-col text-center pb-8 ${isClosing ? 'animate-mobile-sheet-exit' : 'animate-mobile-sheet-enter'}`}>
             {/* Drag Pill Handle */}
             <div className="w-12 h-1.5 rounded-full bg-slate-300 mx-auto mb-4" />
 

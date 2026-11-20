@@ -30,9 +30,9 @@ export default function EnergyModal() {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-3.5 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
+    <div className="absolute inset-0 z-50 flex items-center justify-center p-2.5 sm:p-3 bg-slate-900/50 backdrop-blur-xs animate-in fade-in duration-200">
       <div
-        className="w-full max-w-[350px] max-h-[82%] bg-polar-100 rounded-3xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
+        className="w-full max-w-[350px] max-h-[85%] bg-polar-100 rounded-2xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-in zoom-in-95 duration-200"
       >
         {/* Header */}
         <div className="p-4 px-5 bg-polar-200 border-b border-polar-300 flex items-center justify-between">

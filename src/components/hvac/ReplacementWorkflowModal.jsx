@@ -76,9 +76,9 @@ export default function ReplacementWorkflowModal() {
   const StepIcon = activeStepData.visualIcon;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-3.5 bg-slate-900/50 backdrop-blur-xs animate-backdrop-in">
+    <div className="absolute inset-0 z-50 flex items-end sm:items-center justify-center p-0 sm:p-2.5 bg-slate-900/50 backdrop-blur-xs animate-backdrop-in">
       <div 
-        className="w-full max-w-[420px] max-h-[88%] bg-polar-100 rounded-t-[32px] sm:rounded-3xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-mobile-sheet-enter"
+        className="w-full max-h-[90%] bg-polar-100 rounded-t-[32px] sm:rounded-2xl shadow-2xl border border-white/90 flex flex-col overflow-hidden animate-mobile-sheet-enter"
       >
         {/* Mobile Drag Indicator Handle */}
         <div className="w-full pt-2.5 pb-1 flex justify-center bg-polar-200">
