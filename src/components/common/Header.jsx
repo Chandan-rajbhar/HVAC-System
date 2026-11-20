@@ -35,14 +35,14 @@ export default function Header() {
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
 
-      {/* Brand Identity: Authentic NT Logo & LOCAL INDUSTRIES */}
+      {/* Brand Identity: Authentic NT Logo & NO-TECH HVAC SYSTEMS */}
       <button
         type="button"
         onClick={handleBrandClick}
         className="relative z-10 flex items-center text-left group cursor-pointer active:scale-[0.98] transition-transform focus:outline-none"
         title={currentScreen !== 'home' ? 'Return to Home' : 'NO-TECH Home'}
       >
-        <LogoNT size="sm" variant="full" title="LOCAL INDUSTRIES" />
+        <LogoNT size="sm" variant="full" title="NO-TECH" subtitle="HVAC SYSTEMS" />
       </button>
 
       {/* Header Actions: Notification Bell */}
