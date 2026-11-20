@@ -52,7 +52,7 @@ export default {
         'glow-violet': '0 0 20px rgba(36, 26, 110, 0.35)',
         'glow-green': '0 0 15px rgba(16, 185, 129, 0.45)',
         'glow-red': '0 0 15px rgba(239, 68, 68, 0.45)',
-        'phone-frame': '0 25px 60px -15px rgba(17, 11, 56, 0.25), 0 0 0 12px #2A2E35, 0 0 0 14px #1F2329, 0 20px 40px rgba(0,0,0,0.4)',
+        'phone-frame': '0 25px 60px -12px rgba(0, 0, 0, 0.35), 0 12px 24px -8px rgba(0, 0, 0, 0.25)',
       },
       borderRadius: {
         'phone': '48px',
