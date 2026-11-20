@@ -7,7 +7,7 @@ export default function PhoneFrame({ children, header, bottomNav, modals }) {
         - Desktop (sm:): Exact smartphone frame with dark black bezel, precise 19.5:9 proportions, rounded corners, and authentic drop shadow.
     */
     <div
-      className="relative w-full h-full sm:w-[392px] sm:max-w-[400px] sm:h-[min(848px,calc(100dvh-2rem))] sm:rounded-[48px] sm:border-[10px] sm:border-[#0F1115] sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35),0_12px_24px_-8px_rgba(0,0,0,0.25)] bg-polar-200 overflow-hidden flex flex-col [transform:translateZ(0)] font-sans selection:bg-deepViolet/20 sm:mx-auto sm:my-auto"
+      className="relative w-full h-[100dvh] max-h-[100dvh] sm:w-[392px] sm:max-w-[400px] sm:h-[min(848px,calc(100dvh-2rem))] sm:max-h-none sm:rounded-[48px] sm:border-[10px] sm:border-[#0F1115] sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35),0_12px_24px_-8px_rgba(0,0,0,0.25)] bg-polar-200 overflow-hidden flex flex-col [transform:translateZ(0)] font-sans selection:bg-deepViolet/20 sm:mx-auto sm:my-auto"
     >
       {/* ============================================================== */}
       {/* 1. FIXED TOP HEADER BAR (App Header)                           */}
@@ -28,12 +28,13 @@ export default function PhoneFrame({ children, header, bottomNav, modals }) {
         {children}
       </main>
 
+
       {/* ============================================================== */}
       {/* 3. FIXED BOTTOM FOOTER BAR (Floating BottomNav)                */}
       {/* Pinned firmly at the bottom with shrink-0 and z-40.            */}
       {/* Completely stationary: NEVER moves or scrolls away.            */}
       {/* ============================================================== */}
-      <footer className="shrink-0 z-40 w-full bg-polar-200 select-none">
+      <footer className="shrink-0 z-40 w-full bg-polar-200 select-none pb-[env(safe-area-inset-bottom,0px)]">
         {/* Tab Navigation */}
         {bottomNav}
       </footer>
