@@ -3,15 +3,12 @@ import React from 'react';
 export default function PhoneFrame({ children, header, bottomNav, modals }) {
   return (
     /* Smartphone Device Wrapper:
-        - Mobile (< sm): Edge-to-edge, locked to full visible viewport with position:fixed.
-                         This is the ONLY reliable way to prevent browser chrome
-                         (address bar + system nav bar) from pushing content off-screen.
-        - Desktop (sm:): Exact smartphone frame with dark black bezel, precise 19.5:9 proportions.
+        - Mobile (< sm): Edge-to-edge, locked precisely to the visible browser viewport via --app-height (window.innerHeight).
+        - Desktop (sm:): Exact smartphone frame with dark black bezel, precise 19.5:9 proportions, rounded corners, and shadow.
     */
     <div
-      className="bg-polar-200 overflow-hidden flex flex-col [transform:translateZ(0)] font-sans selection:bg-deepViolet/20
-                 fixed inset-0
-                 sm:relative sm:inset-auto sm:w-[392px] sm:max-w-[400px] sm:h-[min(848px,calc(100dvh-2rem))] sm:rounded-[48px] sm:border-[10px] sm:border-[#0F1115] sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35),0_12px_24px_-8px_rgba(0,0,0,0.25)] sm:mx-auto sm:my-auto"
+      className="phone-viewport-container bg-polar-200 overflow-hidden flex flex-col font-sans selection:bg-deepViolet/20 relative
+                 sm:rounded-[48px] sm:border-[10px] sm:border-[#0F1115] sm:shadow-[0_25px_60px_-12px_rgba(0,0,0,0.35),0_12px_24px_-8px_rgba(0,0,0,0.25)] sm:mx-auto sm:my-auto"
     >
       {/* ============================================================== */}
       {/* 1. FIXED TOP HEADER BAR (App Header)                           */}
