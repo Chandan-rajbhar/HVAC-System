@@ -463,47 +463,117 @@ export default function HomeScreen() {
         </div>
       </div>
 
-      {/* 6. Component Status Card - Full Width */}
-      <div className="p-3.5 rounded-3xl neu-flat flex flex-col justify-between">
-        <div className="flex items-center justify-between mb-2">
-          <div className="flex items-center gap-1.5">
-            <Layers className="w-3.5 h-3.5 text-deepViolet" />
-            <span className="text-xs font-bold text-slate-800">Component Status</span>
+      {/* 6. Modular Hardware Components Showcase Card */}
+      <div className="p-3.5 sm:p-4 rounded-3xl neu-flat flex flex-col gap-3">
+        {/* Header */}
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-7 h-7 rounded-xl bg-deepViolet/10 flex items-center justify-center text-deepViolet shrink-0">
+              <Layers className="w-4 h-4" />
+            </div>
+            <div>
+              <div className="flex items-center gap-1.5">
+                <span className="text-xs font-bold text-slate-800">Component Status</span>
+                <span className="px-1.5 py-0.5 rounded-full bg-emerald-100 text-emerald-700 text-[8.5px] font-bold">
+                  4/4 Active
+                </span>
+              </div>
+              <p className="text-[10px] text-slate-400">Modular In-Wall Product Hardware</p>
+            </div>
           </div>
           <button
             onClick={() => setCurrentScreen('more')}
-            className="text-[9.5px] font-bold text-deepViolet hover:underline"
+            className="text-[10px] font-bold text-deepViolet hover:underline flex items-center gap-0.5 group"
           >
-            View All →
+            <span>View All</span>
+            <ChevronRight className="w-3 h-3 group-hover:translate-x-0.5 transition-transform" />
           </button>
         </div>
 
-        {/* 4 In-Wall Compartment Rows */}
-        <div className="space-y-1.5">
+        {/* 2x2 Grid of Product Cards with Photography */}
+        <div className="grid grid-cols-2 gap-2 sm:gap-2.5">
           {[
-            { id: 'heating', name: 'Heating Compartment', icon: Flame, iconColor: 'text-amber-500', status: 'Normal' },
-            { id: 'evaporator', name: 'Evaporator Coil', icon: Snowflake, iconColor: 'text-cyan-500', status: 'Normal' },
-            { id: 'blower', name: 'Blower Compartment', icon: Wind, iconColor: 'text-sky-500', status: 'Normal' },
-            { id: 'filtration', name: 'Filter System', icon: ShieldCheck, iconColor: 'text-deepViolet', status: 'Good' },
-          ].map((comp) => {
-            const Icon = comp.icon;
-            const matchingComp = compartments.find(c => c.id === comp.id);
+            {
+              id: 'heating',
+              name: 'Heating Element',
+              slot: 1,
+              spec: 'PTC Ceramic 3.8 kW',
+              image: '/assets/crop_heating.jpg',
+              icon: Flame,
+              iconColor: 'text-amber-500',
+              status: 'Normal',
+            },
+            {
+              id: 'evaporator',
+              name: 'Evaporator Coil',
+              slot: 2,
+              spec: 'Micro-Channel R-454B',
+              image: '/assets/crop_evaporator.jpg',
+              icon: Snowflake,
+              iconColor: 'text-cyan-500',
+              status: 'Normal',
+            },
+            {
+              id: 'blower',
+              name: 'Quad Blower Fan',
+              slot: 3,
+              spec: '4x DC Brushless (480 CFM)',
+              image: '/assets/crop_blower.jpg',
+              icon: Wind,
+              iconColor: 'text-sky-500',
+              status: 'Normal',
+            },
+            {
+              id: 'filtration',
+              name: 'Filter Cassette',
+              slot: 4,
+              spec: 'MERV 14 Auto-Advance',
+              image: '/assets/crop_filtration.jpg',
+              icon: ShieldCheck,
+              iconColor: 'text-deepViolet',
+              status: 'Good',
+            },
+          ].map((item) => {
+            const Icon = item.icon;
+            const matchingComp = compartments.find((c) => c.id === item.id) || item;
 
             return (
               <div
-                key={comp.id}
+                key={item.id}
                 onClick={() => matchingComp && setSelectedCompartment(matchingComp)}
-                className="flex items-center justify-between p-1 rounded-lg hover:bg-polar-300/40 cursor-pointer transition-colors"
+                className="group p-2.5 rounded-2xl bg-white border border-slate-200/80 hover:border-deepViolet/40 shadow-xs hover:shadow-md active:scale-[0.98] transition-all duration-200 cursor-pointer flex flex-col justify-between"
               >
-                <div className="flex items-center gap-1.5 min-w-0">
-                  <Icon className={`w-3.5 h-3.5 shrink-0 ${comp.iconColor}`} />
-                  <span className="text-[10px] font-medium text-slate-700 truncate">
-                    {comp.name}
-                  </span>
+                {/* Pure Clean Product Hardware Image */}
+                <div className="relative w-full h-22 sm:h-24 rounded-xl bg-slate-100 overflow-hidden border border-slate-100 mb-2">
+                  <img
+                    src={item.image}
+                    alt={item.name}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                    onError={(e) => {
+                      e.currentTarget.style.display = 'none';
+                    }}
+                  />
                 </div>
-                <div className="flex items-center gap-1 text-[9px] font-bold text-emerald-600 shrink-0">
-                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
-                  <span>{comp.status}</span>
+
+                {/* Product Meta & Status */}
+                <div className="flex-1 flex flex-col justify-between">
+                  <div>
+                    <div className="flex items-center justify-between gap-1">
+                      <div className="flex items-center gap-1 min-w-0">
+                        <Icon className={`w-3.5 h-3.5 shrink-0 ${item.iconColor}`} />
+                        <h4 className="text-[11px] sm:text-xs font-bold text-slate-800 group-hover:text-deepViolet transition-colors truncate">
+                          {item.name}
+                        </h4>
+                      </div>
+                      <div className="flex items-center gap-1 text-[8.5px] font-bold text-emerald-600 shrink-0">
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500" />
+                        <span>{item.status}</span>
+                      </div>
+                    </div>
+                    <p className="text-[9.5px] text-slate-400 font-medium truncate mt-1">
+                      Slot {item.slot} • {item.spec}
+                    </p>
+                  </div>
                 </div>
               </div>
             );

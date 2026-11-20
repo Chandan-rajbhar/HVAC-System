@@ -287,6 +287,7 @@ export function HVACProvider({ children }) {
       setPreviousScreen,
       navigateToNotifications,
       closeNotifications,
+      navigate: (screen) => setCurrentScreen(screen),
       // HVAC State
       power,
       togglePower,
