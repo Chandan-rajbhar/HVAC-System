@@ -7,21 +7,22 @@ export default function LogoNT({
   title = 'NO-TECH',
   subtitle = 'HVAC SYSTEMS'
 }) {
-  // size: 'sm', 'md', 'lg', 'xl'
+  // size: 'xs', 'sm', 'md', 'lg', 'xl'
   const dimensionClass = {
-    sm: 'w-8 h-8 sm:w-9 sm:h-9',
-    md: 'w-10 h-10',
-    lg: 'w-14 h-14',
-    xl: 'w-20 h-20'
-  }[size] || 'w-10 h-10';
+    xs: 'w-5 h-5',
+    sm: 'w-6 h-6 sm:w-[26px] sm:h-[26px]',
+    md: 'w-7 h-7 sm:w-8 sm:h-8',
+    lg: 'w-10 h-10 sm:w-12 sm:h-12',
+    xl: 'w-16 h-16'
+  }[size] || 'w-6 h-6 sm:w-[26px] sm:h-[26px]';
 
-  const isSmall = size === 'sm' || size === 'md';
+  const isSmall = size === 'xs' || size === 'sm' || size === 'md';
 
   return (
-    <div className={`flex items-center gap-2 sm:gap-2.5 ${className}`}>
+    <div className={`flex items-center gap-1.5 sm:gap-2 ${className}`}>
       {/* Authentic Circular NT Monogram with crisp white medallion finish */}
       <div 
-        className={`relative ${dimensionClass} shrink-0 rounded-full bg-white border border-white/60 shadow-[0_2px_8px_rgba(0,0,0,0.2),inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 duration-200`}
+        className={`relative ${dimensionClass} shrink-0 rounded-full bg-white border border-white/70 shadow-[0_1px_4px_rgba(0,0,0,0.18),inset_0_1px_1px_rgba(255,255,255,0.9)] flex items-center justify-center overflow-hidden transition-transform group-hover:scale-105 duration-200`}
       >
         <img
           src="/assets/logo.jpg"
@@ -72,11 +73,11 @@ export default function LogoNT({
 
       {variant === 'full' && (
         <div className="flex flex-col text-left select-none justify-center">
-          <span className="font-['Space_Grotesk'] text-white font-black tracking-wider text-[14.5px] sm:text-[15.5px] leading-none drop-shadow-xs">
+          <span className="font-['Space_Grotesk'] text-white font-black tracking-wide text-[11.5px] sm:text-[12.5px] leading-tight drop-shadow-xs">
             {title}
           </span>
           {subtitle && (
-            <span className="text-[8.5px] sm:text-[9px] font-bold tracking-[0.2em] text-slate-300/90 uppercase leading-none font-mono mt-[1.5px]">
+            <span className="text-[6.5px] sm:text-[7px] font-bold tracking-[0.18em] text-slate-300/85 uppercase leading-tight font-mono mt-[0.5px]">
               {subtitle}
             </span>
           )}

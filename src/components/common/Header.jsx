@@ -30,7 +30,7 @@ export default function Header() {
   };
 
   return (
-    <div className="relative w-full px-4 sm:px-5 py-3 sm:py-3.5 flex items-center justify-between bg-gradient-to-r from-[#1B1454] via-[#281D7A] to-[#382898] text-white shadow-[0_4px_16px_rgba(36,26,110,0.25)] border-b border-indigo-950/40 select-none">
+    <div className="relative w-full px-3.5 sm:px-4 py-2 sm:py-2.5 flex items-center justify-between bg-gradient-to-r from-[#1B1454] via-[#281D7A] to-[#382898] text-white shadow-[0_2px_10px_rgba(27,20,84,0.3)] border-b border-indigo-950/40 select-none">
       {/* Subtle top specular sheen & bottom hairline accent */}
       <div className="absolute inset-0 bg-gradient-to-b from-white/10 to-transparent pointer-events-none" />
       <div className="absolute bottom-0 left-0 right-0 h-[1px] bg-gradient-to-r from-transparent via-white/20 to-transparent pointer-events-none" />
@@ -49,17 +49,17 @@ export default function Header() {
       <div className="relative z-10 flex items-center">
         <button
           onClick={handleNotificationClick}
-          className={`relative w-9 h-9 sm:w-10 sm:h-10 rounded-2xl flex items-center justify-center transition-all ${
+          className={`relative w-7 h-7 sm:w-7.5 sm:h-7.5 rounded-lg sm:rounded-xl flex items-center justify-center transition-all ${
             isNotificationPage
-              ? 'bg-white/25 border border-white/40 text-white ring-2 ring-white/30 shadow-inner backdrop-blur-md'
+              ? 'bg-white/25 border border-white/40 text-white ring-1.5 ring-white/30 shadow-inner backdrop-blur-md'
               : 'bg-white/15 hover:bg-white/25 active:bg-white/30 border border-white/20 text-white shadow-xs backdrop-blur-md'
           }`}
           title={isNotificationPage ? 'Close Notifications' : 'Notifications & Alerts'}
           aria-label={isNotificationPage ? 'Close Notifications' : 'Notifications'}
         >
-          <Bell className="w-[18px] h-[18px] text-white" />
+          <Bell className="w-3.5 h-3.5 sm:w-[15px] sm:h-[15px] text-white" />
           {unreadCount > 0 && (
-            <span className="absolute -top-1.5 -right-1.5 min-w-[19px] h-[19px] px-1 rounded-full bg-gradient-to-tr from-rose-600 via-red-500 to-rose-500 text-white text-[9.5px] font-black tracking-tight flex items-center justify-center shadow-[0_2px_8px_rgba(244,63,94,0.5)] ring-2 ring-[#281D7A] select-none pointer-events-none">
+            <span className="absolute -top-1 -right-1 min-w-[15px] h-[15px] px-0.5 rounded-full bg-gradient-to-tr from-rose-600 via-red-500 to-rose-500 text-white text-[8px] font-black tracking-tight flex items-center justify-center shadow-[0_2px_6px_rgba(244,63,94,0.5)] ring-1.5 ring-[#281D7A] select-none pointer-events-none leading-none">
               {unreadCount}
             </span>
           )}
