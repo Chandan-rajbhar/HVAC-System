@@ -130,10 +130,10 @@ export default function MoreScreen() {
               title="Go back"
               aria-label="Back"
             >
-              <ArrowLeft className="w-4 h-4 stroke-[2.5]" />
+              <ArrowLeft className="w- h-4 stroke-[2.5]" />
             </button>
             <div>
-              <h2 className="text-lg font-extrabold text-deepViolet tracking-tight leading-tight">
+              <h2 className="text- font-extrabold text-deepViolet tracking-tight leading-tight">
                 More
               </h2>
               <p className="text-[10px] text-slate-500 font-medium">
@@ -175,8 +175,8 @@ export default function MoreScreen() {
                 <div className="flex items-center gap-2">
                   {item.badge && (
                     <span className={`px-2 py-0.5 rounded-full text-[9.5px] font-bold ${item.id === 'notifications' && unreadCount > 0
-                        ? 'bg-status-attention text-white'
-                        : 'bg-polar-300 text-deepViolet'
+                      ? 'bg-status-attention text-white'
+                      : 'bg-polar-300 text-deepViolet'
                       }`}>
                       {item.badge}
                     </span>
@@ -246,62 +246,100 @@ export default function MoreScreen() {
             </div>
           </div>
 
-          <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-3.5 space-y-2.5 no-scrollbar">
-            <p className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase px-1">
-              Active In-Wall Modules ({compartments.length})
-            </p>
+          <div className="flex-1 overflow-y-auto px-4 sm:px-5 py-3.5 space-y-3.5 pb-8 no-scrollbar">
+            <div className="flex items-center justify-between px-1">
+              <p className="text-[10px] font-extrabold tracking-wider text-slate-400 uppercase">
+                Active In-Wall Modules ({compartments.length})
+              </p>
+              <span className="text-[10px] font-semibold text-deepViolet/70">
+                Tap card to inspect
+              </span>
+            </div>
 
-            {compartments.map((comp) => {
-              const CompIcon = comp.id === 'heating' ? Flame : comp.id === 'evaporator' ? Snowflake : comp.id === 'blower' ? Wind : ShieldCheck;
+            <div className="space-y-3">
+              {compartments.map((comp) => {
+                const CompIcon = comp.id === 'heating' ? Flame : comp.id === 'evaporator' ? Snowflake : comp.id === 'blower' ? Wind : ShieldCheck;
 
-              return (
-                <div
-                  key={comp.id}
-                  onClick={() => {
-                    handleCloseModal();
-                    setSelectedCompartment(comp);
-                  }}
-                  className="p-3 sm:p-3.5 rounded-2xl bg-white border border-slate-200/90 shadow-xs flex items-center justify-between cursor-pointer hover:border-deepViolet/40 hover:shadow-sm active:scale-[0.99] transition-all group"
-                >
-                  <div className="flex items-center gap-3 min-w-0">
-                    {/* Modular Product Hardware Thumbnail */}
-                    <div className="relative w-12 h-12 sm:w-13 sm:h-13 rounded-xl bg-slate-100 border border-slate-200/80 overflow-hidden shrink-0 shadow-xs">
+                return (
+                  <div
+                    key={comp.id}
+                    onClick={() => {
+                      handleCloseModal();
+                      setSelectedCompartment(comp);
+                    }}
+                    className="rounded-2xl bg-white border border-slate-200/90 shadow-xs hover:border-deepViolet/40 hover:shadow-md active:scale-[0.99] transition-all duration-200 cursor-pointer overflow-hidden flex flex-col group"
+                  >
+                    {/* Top Image Section (Clean, pure image without buttons/badges) */}
+                    <div className="relative w-full h-36 sm:h-40 bg-slate-100 overflow-hidden border-b border-slate-100">
                       <img
                         src={comp.image}
                         alt={comp.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-200"
+                        className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500"
                         onError={(e) => {
                           e.currentTarget.style.display = 'none';
                         }}
                       />
-                      <span className="absolute bottom-0 inset-x-0 bg-slate-900/80 text-[7.5px] font-bold text-white text-center font-mono py-0.5">
-                        #{comp.slot}
-                      </span>
                     </div>
 
-                    <div className="min-w-0">
-                      <div className="flex items-center gap-1.5">
-                        <CompIcon className="w-3.5 h-3.5 text-deepViolet shrink-0" />
-                        <h4 className="text-xs font-bold text-slate-800 group-hover:text-deepViolet transition-colors truncate">
-                          {comp.name}
-                        </h4>
+                    {/* Content / Details Below Image */}
+                    <div className="p-3.5 space-y-2.5">
+                      {/* Meta header: Slot / Position & Status */}
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-center gap-1.5 text-[10.5px]">
+                          <span className="px-2 py-0.5 rounded-md bg-polar-300 text-deepViolet font-bold font-mono text-[10px]">
+                            Slot #{comp.slot}
+                          </span>
+                          <span className="text-slate-400">•</span>
+                          <span className="text-slate-500 font-medium">
+                            {comp.position}
+                          </span>
+                        </div>
+
+                        <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/70 text-[9.5px] font-bold flex items-center gap-1">
+                          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                          <span>Active</span>
+                        </span>
                       </div>
-                      <p className="text-[10px] sm:text-[10.5px] text-slate-500 truncate mt-0.5">
-                        {comp.spec}
-                      </p>
+
+                      {/* Name & Icon Row */}
+                      <div className="flex items-center justify-between gap-2">
+                        <div className="flex items-center gap-2 min-w-0">
+                          <div className="w-7 h-7 rounded-lg bg-deepViolet/10 text-deepViolet flex items-center justify-center shrink-0 group-hover:bg-deepViolet group-hover:text-white transition-colors duration-200">
+                            <CompIcon className="w-4 h-4 stroke-[2.2]" />
+                          </div>
+                          <h4 className="text-xs sm:text-[13px] font-bold text-slate-800 group-hover:text-deepViolet transition-colors truncate">
+                            {comp.name}
+                          </h4>
+                        </div>
+                        <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 group-hover:text-deepViolet transition-all shrink-0" />
+                      </div>
+
+                      {/* Technical Specs Pill */}
+                      <div className="px-2.5 py-1.5 rounded-xl bg-polar-200/80 border border-slate-200/70 flex items-center justify-between text-[10.5px] gap-2">
+                        <span className="text-slate-400 font-semibold uppercase tracking-wider text-[9px] font-mono shrink-0">
+                          Spec
+                        </span>
+                        <span className="font-bold text-slate-700 truncate text-right">
+                          {comp.spec}
+                        </span>
+                      </div>
+
+                      {/* Meta Footer (Cycle / Inspection Due) */}
+                      <div className="flex items-center justify-between pt-1 border-t border-slate-100 text-[10px]">
+                        <div className="flex items-center gap-1 text-slate-500 truncate mr-2">
+                          <span className="text-slate-400">Cycle:</span>
+                          <span className="font-semibold text-slate-600 truncate">{comp.replacementCycle}</span>
+                        </div>
+                        <span className="text-deepViolet font-bold text-[10.5px] group-hover:translate-x-0.5 transition-transform flex items-center gap-0.5 shrink-0">
+                          Inspect
+                          <ChevronRight className="w-3 h-3 inline" />
+                        </span>
+                      </div>
                     </div>
                   </div>
-
-                  <div className="flex items-center gap-2 shrink-0 ml-2">
-                    <span className="px-2 py-0.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200/70 text-[9.5px] font-bold flex items-center gap-1">
-                      <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
-                      <span>Active</span>
-                    </span>
-                    <ChevronRight className="w-4 h-4 text-slate-400 group-hover:translate-x-0.5 group-hover:text-deepViolet transition-all" />
-                  </div>
-                </div>
-              );
-            })}
+                );
+              })}
+            </div>
           </div>
         </div>
       )}
